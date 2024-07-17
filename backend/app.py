@@ -7,6 +7,17 @@ import io
 app = Flask(__name__)
 CORS(app)
 
+
+# # Background removal function
+# def remove_background(image_bytes):
+#     try:
+#         processed_bytes = rembg.remove(image_bytes)
+#         return processed_bytes 
+#     except Exception as e:
+#         print(f'Error removing background: {e}')
+#         raise
+
+
 @app.route('/remove_background', methods=['POST'])
 def remove_background():
     if 'file' not in request.files:
@@ -35,4 +46,4 @@ def remove_background():
         return send_file(img_byte_arr, mimetype='image/png', as_attachment=True, download_name='removed_background.png')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port='5000',debug=True)
